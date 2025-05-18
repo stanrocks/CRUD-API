@@ -1,0 +1,37 @@
+{
+  "name": "crud-api",
+  "version": "1.0.0",
+  "description": "Simple CRUD API",
+  "homepage": "https://github.com/stanrocks/CRUD-API#readme",
+  "bugs": {
+    "url": "https://github.com/stanrocks/CRUD-API/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stanrocks/CRUD-API.git"
+  },
+  "license": "MIT",
+  "author": "Stan Rocks",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start:prod": "npm run build && node dist/index.js",
+    "build": "tsc --build --verbose",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@types/node": "^22.15.18",
+    "eslint": "^9.27.0",
+    "globals": "^16.1.0",
+    "prettier": "3.5.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  }
+}
