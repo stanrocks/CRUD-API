@@ -4,14 +4,15 @@
 
 Simple CRUD API using in-memory database underneath.
 
-## Installation instructions
+## Setup instructions
 
 - Clone repo to your local folder
 - Switch to `dev` branch
 - Install dependencies with `npm i`
 - Create `.env` file in root folder (not in `src`' folder, but at the same level where `package.json` file is) and write `PORT=4000` inside it (or other port number). See `.env.example` as an example.
-- `npm run start:dev` to run development mode
-- `npm run start:prod` to run production mode
+- Use `npm run start:dev` to run the server in development mode
+- Or use `npm run start:prod` to build and run the server in production mode
+- Use "Postman" or alternative apps to send HTTP-requests to the server
 
 ## Technical details
 
@@ -27,9 +28,16 @@ Simple CRUD API using in-memory database underneath.
      - Server should answer with `status code` **200** and record with `id === userId` if it exists
      - Server should answer with `status code` **400** and corresponding message if `userId` is invalid (not `uuid`)
      - Server should answer with `status code` **404** and corresponding message if record with `id === userId` doesn't exist
-   - **POST** `api/users` is used to create record about new user and store it in database
-     - Server should answer with `status code` **201** and newly created record
-     - Server should answer with `status code` **400** and corresponding message if request `body` does not contain **required** fields
+   - **POST** `api/users` is used to create record about new user and store it in database. For example, you can use this as a request body:
+   ```json
+   {
+     "username": "Bob",
+     "age": 23,
+     "hobbies": ["play video games", "drink coffee", "touch grass"]
+   }
+   ```
+   - Server should answer with `status code` **201** and newly created record
+   - Server should answer with `status code` **400** and corresponding message if request `body` does not contain **required** fields
    - **PUT** `api/users/{userId}` is used to update existing user
      - Server should answer with` status code` **200** and updated record
      - Server should answer with` status code` **400** and corresponding message if `userId` is invalid (not `uuid`)
