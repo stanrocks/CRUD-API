@@ -1,15 +1,22 @@
-# Assignment: CRUD API
+# CRUD API
 
 ## Description
 
-Your task is to implement simple CRUD API using in-memory database underneath.
+Simple CRUD API using in-memory database underneath.
 
-## Technical requirements
+## Installation instructions
 
-- Task can be implemented on Javascript or Typescript
-- Only `nodemon`, `dotenv`, `cross-env`, `typescript`, `ts-node`, `ts-node-dev`, `eslint` and its plugins, `webpack-cli`, `webpack` and its plugins and loaders, `prettier`, `uuid`, `@types/*` as well as libraries used for testing are allowed
-- Use 22.x.x version (22.14.0 or upper) of Node.js
-- Prefer asynchronous API whenever possible
+- Clone repo to your local folder
+- Switch to `dev` branch
+- Install dependencies with `npm i`
+- Create `.env` file in root folder (not in `src`' folder, but at the same level where `package.json` file is) and write `PORT=4000` inside it (or other port number). See `.env.example` as an example.
+- `npm run start:dev` to run development mode
+- `npm run start:prod` to run production mode
+
+## Technical details
+
+- Task is implemented on Typescript.
+- Only `nodemon`, `dotenv`, `cross-env`, `typescript`, `ts-node`, `ts-node-dev`, `eslint` and its plugins, `webpack-cli`, `webpack` and its plugins and loaders, `prettier`, `uuid`, `@types/*` as well as testing libraries are used.
 
 ## Implementation details
 
@@ -42,21 +49,3 @@ Your task is to implement simple CRUD API using in-memory database underneath.
 6. There should be 2 modes of running application (**development** and **production**):
    - The application is run in development mode using `nodemon` or `ts-node-dev` (there is a `npm` script `start:dev`)
    - The application is run in production mode (there is a `npm` script `start:prod` that starts the build process and then runs the bundled file)
-7. There could be some tests for API (not less than **3** scenarios). Example of test scenario:
-   1. Get all records with a `GET` `api/users` request (an empty array is expected)
-   2. A new object is created by a `POST` `api/users` request (a response containing newly created record is expected)
-   3. With a `GET` `api/users/{userId}` request, we try to get the created record by its `id` (the created record is expected)
-   4. We try to update the created record with a `PUT` `api/users/{userId}`request (a response is expected containing an updated object with the same `id`)
-   5. With a `DELETE` `api/users/{userId}` request, we delete the created object by `id` (confirmation of successful deletion is expected)
-   6. With a `GET` `api/users/{userId}` request, we are trying to get a deleted object by `id` (expected answer is that there is no such object)
-8. There could be implemented horizontal scaling for application, there should be `npm` script `start:multi` that starts multiple instances of your application using the Node.js `Cluster` API (equal to the number of available parallelism - 1 on the host machine, each listening on port PORT + n) with a **load balancer** that distributes requests across them (using Round-robin algorithm). For example: available parallelism is 4, `PORT` is 4000. On run `npm run start:multi` it works following way
-
-- On `localhost:4000/api` load balancer is listening for requests
-- On `localhost:4001/api`, `localhost:4002/api`, `localhost:4003/api` workers are listening for requests from load balancer
-- When user sends request to `localhost:4000/api`, load balancer sends this request to `localhost:4001/api`, next user request is sent to `localhost:4002/api` and so on.
-- After sending request to `localhost:4003/api` load balancer starts from the first worker again (sends request to `localhost:4001/api`)
-- State of db should be consistent between different workers, for example:
-  1. First `POST` request addressed to `localhost:4001/api` creates user
-  2. Second `GET` request addressed to `localhost:4002/api` should return created user
-  3. Third `DELETE` request addressed to `localhost:4003/api` deletes created user
-  4. Fourth `GET` request addressed to `localhost:4001/api` should return **404** status code for created user
