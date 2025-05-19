@@ -26,6 +26,7 @@
   "devDependencies": {
     "@eslint/js": "^9.27.0",
     "@types/node": "^22.15.18",
+    "@types/uuid": "^10.0.0",
     "eslint": "^9.27.0",
     "globals": "^16.1.0",
     "prettier": "3.5.3",
@@ -33,5 +34,9 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "uuid": "^11.1.0"
   }
 }
